@@ -1,0 +1,22 @@
+{
+    "name": "Wireframes",
+    "description": "Wireframes",
+    "version": "0.0.1",
+    "homepage": "http://www.physx.be",
+    "author": {
+        "name": "Bert Pareyn",
+        "email": "pareyn.bert@gmail.com"
+    },
+    "licenses": [
+        {
+            "type": "ECLv2",
+            "url": "http://opensource.org/licenses/ecl2.php"
+        }
+    ],
+    "dependencies": {
+        "bunyan": "latest",
+        "express": "latest",
+        "mysql": "latest",
+        "passport": "latest"
+    }
+}
