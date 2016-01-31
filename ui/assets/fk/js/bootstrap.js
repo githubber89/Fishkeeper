@@ -22,35 +22,25 @@
  * SOFTWARE.
  */
 
-var log = require('bunyan').createLogger({name: 'system'});
-var Module = require('./module');
-var Mysql = require('./mysql');
-var Server = require('./server');
+requirejs.config({
+    'baseUrl': 'assets',
+    'paths': {
+        // Vendor paths
+        'bootstrap': 'vendor/js/bootstrap',
+        'jquery': 'vendor/js/jquery-2.1.4',
+        'trimpath': 'vendor/js/trimpath'
+    }
+});
 
-/**
- * Start the server
- *
- * @param  {Object}     config          Configuration to start the server with
- * @param  {Function}   callback        Standard callback function
- * @param  {Object}     callback.err    Error object
- */
-module.exports.init = function(config, callback) {
-    // Initialize the server
-    Server.initServer(config, function(err) {
-        if (err) {
-            return callback(err);
+require(['jquery', 'trimpath'], function($, trimpath) {
+    // Find the script that has specified both the data-main (which loaded this bootstrap script) and a data-loadmodule attribute. The
+    // data-loadmodule attribute tells us which script they wish to load *after* the core APIs have been properly bootstrapped.
+    var $mainScript = $('script[data-main][data-loadmodule]');
+    if ($mainScript.length > 0) {
+        var loadModule = $mainScript.attr('data-loadmodule');
+        if (loadModule) {
+            // Require the module they specified in the data-loadmodule attribute
+            require([loadModule]);
         }
-
-        // Initialize the database
-        Mysql.initDatabase(config, function(err) {
-            if (err) {
-                return callback(err);
-            }
-
-            // Initialize the modules
-            Module.initModules(config, function(err) {
-                callback(err);
-            });
-        });
-    });
-};
+    }
+});

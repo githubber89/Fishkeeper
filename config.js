@@ -25,11 +25,16 @@
 var config = module.exports.config = {};
 
 config.db = {
-    'mysql': {
-        'database': 'wireframes',
+    'postgres': {
+        'database': 'Fishkeeper',
         'host' : 'localhost',
-        'user' : 'root',
+        'user' : 'bertpareyn',
         'password' : 'root',
-        'port': '8889'
+        'port': '5432'
     }
+};
+
+config.ui = {
+    'path': './ui',
+    'cssPath': './ui/assets/fk/css'
 };

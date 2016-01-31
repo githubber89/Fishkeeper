@@ -22,26 +22,20 @@
  * SOFTWARE.
  */
 
-var mysql = require('mysql');
-var log = require('bunyan').createLogger({name: 'system'});
+define(['jquery'], function($) {
 
-/**
- * Initialize the database connection
- *
- * @param  {Object}     config          Configuration to start the server with
- * @param  {Function}   callback        Standard callback function
- * @param  {Object}     callback.err    Error object
- */
-module.exports.initDatabase = function(config, callback) {
-    log.info('Initialize the database connection');
-    var dbConn = module.exports.dbConn = mysql.createConnection(config.db.mysql);
+    var getMe = function() {
+        $.ajax({
+            'url': '/api/me',
+            'type': 'GET',
+            'success': function(data) {
+                console.log(data);
+            },
+            'error': function(jqXHR, textStatus) {
+                console.log(jqXHR, textStatus);
+            }
+        });
+    };
 
-    dbConn.connect(function(err) {
-        if (err) {
-            log.error('Could not initialize the database connection');
-            return callback(err);
-        }
-        log.info('Initialized database connection');
-        callback(null);
-    });
-};
+    getMe();
+});

@@ -23,10 +23,10 @@
  */
 
 var log = require('bunyan').createLogger({name: 'system'});
-var WF = require('wf-util/lib/wf');
+var FK = require('fk-util/lib/fk');
 var config = require('./config').config;
 
-WF.init(config, function(err) {
+FK.init(config, function(err) {
     if (err) {
         log.error(err, 'Server could not be started');
     } else {

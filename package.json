@@ -1,8 +1,7 @@
 {
-    "name": "Wireframes",
-    "description": "Wireframes",
+    "name": "Fishkeeper",
+    "description": "Fishkeeper",
     "version": "0.0.1",
-    "homepage": "http://www.physx.be",
     "author": {
         "name": "Bert Pareyn",
         "email": "pareyn.bert@gmail.com"
@@ -14,9 +13,12 @@
         }
     ],
     "dependencies": {
+        "body-parser": "latest",
         "bunyan": "latest",
+        "connect-flash": "latest",
         "express": "latest",
-        "mysql": "latest",
-        "passport": "latest"
+        "less": "latest",
+        "pg": "latest",
+        "watch": "latest"
     }
 }
